@@ -2,7 +2,7 @@
 session_start();
 
 if(!isset($_SESSION["user"])){
-	header("location: http://localhost/pw2/trabalho2/login-page.php");
+	header("location: ./login-page.php");
 }
 
 
@@ -67,6 +67,13 @@ if(!isset($_SESSION["user"])){
 	    <div class="col">
 	    	<label for="salario">Salário: </label>
 	      <input type="text" class="form-control" id="salario" name="salario" placeholder="Salário">
+	    </div>
+			<div class="col">
+	    	<label for="permissao">Permissão: </label>
+	      <select class="form-control" name="permissao">
+				<option value="usuario">Usuário</option>
+				<option value="admin">Administrador</option>
+				</select>
 	    </div>
 	  </div>
 	   <button type="submit" name="cadastrar" value="Cadastrar" class="btn btn-primary">Cadastrar</button>

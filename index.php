@@ -9,7 +9,7 @@ $banco = new bancoUser();
 $funcionarios = $banco->getAllUsers();
 
 if(!isset($_SESSION["user"])){
-	header("location: http://localhost/pw2/trabalho2/login-page.php");
+	header("location: ./login-page.php");
 }
 
 ?>
@@ -59,15 +59,21 @@ if(!isset($_SESSION["user"])){
 				    <tr>
 				      <th scope="col">Nome</th>
 				      <th scope="col">Salário</th>
+							<th scope="col">Permissão</th>
 				    </tr>
 				  </thead>
 				  <tbody>
 				  	<?php 
 				  		foreach ($funcionarios as $funcionario) {
-				  			echo "<tr>
-				     				<td>".$funcionario['nome']."</td>
-				      				<td>".$funcionario['salario']."</td>
-				    			</tr>";
+								echo "<tr>
+								<td>".$funcionario['nome']."</td>
+								<td>".$funcionario['salario']."</td>";
+								if($funcionario['permissao'] == 'usuario'){
+									echo "<td>Usuário</td>";
+								}
+								else if($funcionario['permissao'] == 'admin'){
+									echo "<td>Administrador</td>";
+								}
 				  		}
 
 				  	?>

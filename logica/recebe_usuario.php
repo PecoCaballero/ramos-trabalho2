@@ -11,12 +11,12 @@ function debug($param){
 
 $user = new modelUser();
 
-$user->constructorUser($_POST["login"], $_POST["nome"], $_POST["salario"], md5($_POST["senha"]));
+$user->constructorUser($_POST["login"], $_POST["nome"], $_POST["salario"], md5($_POST["senha"]), $_POST['permissao']);
 
 $banco = new bancoUser();
 
 $banco->cadastraUser($user);
 
-header("Location: http://localhost/pw2/trabalho2/index.php")
+header("Location: ../index.php")
 
 ?>

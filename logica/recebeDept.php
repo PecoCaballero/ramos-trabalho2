@@ -16,6 +16,6 @@ $dept->constructorDept($_POST["sigla"], $_POST["nome"]);
 $banco->cadastraDept($dept);
 
 
-header("Location: http://localhost/pw2/trabalho2/exibe-departamento.php")
+header("Location: ../exibe-departamento.php")
 
 ?>

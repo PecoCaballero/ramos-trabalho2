@@ -4,12 +4,14 @@
 		private $nome;
 		private $salario;
 		private $senha;
+		private $permissao;
 
-		function constructorUser($login, $nome, $salario, $senha){
+		function constructorUser($login, $nome, $salario, $senha, $permissao){
 			$this->setLogin($login);
 			$this->setNome($nome);
 			$this->setSalario($salario);
 			$this->setSenha($senha);
+			$this->setPermissao($permissao);
 		}
 
 		public function getLogin(){
@@ -38,6 +40,13 @@
 		}
 		public function setSenha($senha){
 			$this->senha = $senha;
+			return $this;
+		}
+		public function getPermissao(){
+			return $this->permissao;
+		}
+		public function setPermissao($permissao){
+			$this->permissao = $permissao;
 			return $this;
 		}
 					

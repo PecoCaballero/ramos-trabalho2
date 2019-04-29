@@ -8,7 +8,7 @@ $banco = new bancoUser();
 $departamentos = $banco->getAllDepts();
 
 if(!isset($_SESSION["user"])){
-	header("location: http://localhost/pw2/trabalho2/login-page.php");
+	header("location: ./login-page.php");
 }
 
 ?>
@@ -63,10 +63,11 @@ if(!isset($_SESSION["user"])){
 				  <tbody>
 				  	<?php 
 				  		foreach ($departamentos as $departamento) {
-				  			echo "<tr>
-				     				<td>".$departamento['sigla']."</td>
-				      				<td>".$departamento['nome']."</td>
-				    			</tr>";
+								echo "
+								<tr>
+								<td>".$departamento['sigla']."</td>
+								<td>".$departamento['nome']."</td>
+				    		</tr>";
 				  		}
 
 				  	?>

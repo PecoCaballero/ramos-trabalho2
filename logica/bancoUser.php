@@ -64,8 +64,8 @@ class BancoUser{
 
 	function cadastraUser($modelUser){
 		$con = $this->conexao();
-		$sql = "INSERT INTO usuario (login, nome, salario, senha) VALUES ('{$modelUser->getLogin()}', '{$modelUser->getNome()}', 
-		'{$modelUser->getSalario()}', '{$modelUser->getSenha()}')";
+		$sql = "INSERT INTO usuario (login, nome, salario, senha, permissao) VALUES ('{$modelUser->getLogin()}', '{$modelUser->getNome()}', 
+		'{$modelUser->getSalario()}', '{$modelUser->getSenha()}', '{$modelUser->getPermissao()}')";
 		$this->debug($sql);
 		if($con->query($sql)){
 			echo "cadastrado";

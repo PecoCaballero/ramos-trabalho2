@@ -14,10 +14,10 @@ debug($user);
 
 if($user["senha"] == $senha){
 	$_SESSION['user'] = $user;
-	header("location: http://localhost/pw2/trabalho2/index.php");
+	header("location: ../index.php");
 }
 else{
-	header("location: http://localhost/pw2/trabalho2/login-page.php?try=true");
+	header("location: ../login-page.php?try=true");
 }
 
 function debug($param){

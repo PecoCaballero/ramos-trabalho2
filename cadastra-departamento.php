@@ -2,7 +2,7 @@
 session_start();
 
 if(!isset($_SESSION["user"])){
-	header("location: http://localhost/pw2/trabalho2/login-page.php");
+	header("location: ./login-page.php");
 }
 
 
