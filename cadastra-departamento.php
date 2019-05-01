@@ -28,8 +28,8 @@ if (!isset($_SESSION["user"])) {
 
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 		<a class="navbar-brand" href="#"><?php if (isset($_SESSION)) {
-																				echo $_SESSION["user"]["nome"] . ", " . $permissao;
-																			} ?></a>
+												echo $_SESSION["user"]["nome"] . ", " . $permissao;
+											} ?></a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
@@ -38,6 +38,9 @@ if (!isset($_SESSION["user"])) {
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item">
 					<a class="nav-link" href="index.php">Exibe funcionário</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="exibe-departamento.php">Exibe departamento</a>
 				</li>
 				<?php if ($_SESSION['user']['permissao'] == 'admin') {
 					?>
@@ -51,9 +54,6 @@ if (!isset($_SESSION["user"])) {
 					</li>
 				<?php
 			} ?>
-				<li class="nav-item">
-					<a class="nav-link" href="exibe-departamento.php">Exibe departamento</a>
-				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="logica/sair.php">Sair</a>
 				</li>

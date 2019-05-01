@@ -1,5 +1,9 @@
 <?php
 session_start();
+include("logica/bancoUser.php");
+$banco = new bancoUser();
+
+$departamentos = $banco->getAllDepts();
 
 if (!isset($_SESSION["user"])) {
 	header("location: ./login-page.php");
@@ -28,8 +32,8 @@ if (!isset($_SESSION["user"])) {
 
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 		<a class="navbar-brand" href="#"><?php if (isset($_SESSION)) {
-																				echo $_SESSION["user"]["nome"] . ", " . $permissao;
-																			} ?></a>
+												echo $_SESSION["user"]["nome"] . ", " . $permissao;
+											} ?></a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
@@ -38,6 +42,9 @@ if (!isset($_SESSION["user"])) {
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item">
 					<a class="nav-link" href="index.php">Exibe funcionário</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="exibe-departamento.php">Exibe departamento</a>
 				</li>
 				<?php if ($_SESSION['user']['permissao'] == 'admin') {
 					?>
@@ -52,9 +59,6 @@ if (!isset($_SESSION["user"])) {
 				<?php
 			} ?>
 
-				<li class="nav-item">
-					<a class="nav-link" href="exibe-departamento.php">Exibe departamento</a>
-				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="logica/sair.php">Sair</a>
 				</li>
@@ -75,6 +79,13 @@ if (!isset($_SESSION["user"])) {
 						<label for="nome">Nome: </label>
 						<input type="text" class="form-control" id="nome" name="nome" placeholder="Nome">
 					</div>
+					<div class="col">
+						<label for="permissao">Permissão: </label>
+						<select class="form-control" name="permissao">
+							<option value="usuario">Usuário</option>
+							<option value="admin">Administrador</option>
+						</select>
+					</div>
 				</div>
 				<div class="row">
 					<div class="col">
@@ -86,13 +97,17 @@ if (!isset($_SESSION["user"])) {
 						<input type="text" class="form-control" id="salario" name="salario" placeholder="Salário">
 					</div>
 					<div class="col">
-						<label for="permissao">Permissão: </label>
-						<select class="form-control" name="permissao">
-							<option value="usuario">Usuário</option>
-							<option value="admin">Administrador</option>
+						<label for="departamento">Departamento</label>
+						<select class="form-control" name="departamento">
+							<?php
+							foreach ($departamentos as $departamento) {
+								?><option value="<?php $departamento['nome'] ?>"><?php echo $departamento['nome'] ?></option><?php
+																														}
+																														?>
 						</select>
 					</div>
 				</div>
+				<br>
 				<button type="submit" name="cadastrar" value="Cadastrar" class="btn btn-primary">Cadastrar</button>
 			</form>
 

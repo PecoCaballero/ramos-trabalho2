@@ -39,13 +39,16 @@ if (!isset($_SESSION["user"])) {
 				<li class="nav-item">
 					<a class="nav-link" href="index.php">Exibe funcionário</a>
 				</li>
+				<li class="nav-item active">
+					<a class="nav-link" href="exibe-departamento.php">Exibe departamento<span class="sr-only">(current)</span></a>
+				</li>
 				<?php if ($_SESSION["user"]["permissao"] == "admin") {
 					?>
 					<li class="nav-item">
 						<a class="nav-link" href="cadastra-funcionario.php">Cadastra funcionário</a>
 					</li><?php
-						}
-						?>
+					}
+					?>
 				<?php if ($_SESSION["user"]["permissao"] == "admin") {
 					?>
 					<li class="nav-item">
@@ -54,9 +57,6 @@ if (!isset($_SESSION["user"])) {
 						</a>
 					</li>
 				<?php } ?>
-				<li class="nav-item active">
-					<a class="nav-link" href="exibe-departamento.php">Exibe departamento<span class="sr-only">(current)</span></a>
-				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="logica/sair.php">Sair</a>
 				</li>
