@@ -30,7 +30,7 @@ class BancoUser{
 
 	function getUser($login){
 		$con = $this->conexao();
-		$sql = "SELECT senha, nome, salario FROM Usuario WHERE login='".$login."'";
+		$sql = "SELECT senha, nome, salario, permissao FROM Usuario WHERE login='".$login."'";
 		$resultado = $con->query($sql);
 		$data = [];
 		while($row = $resultado->fetch_assoc()){
@@ -76,9 +76,9 @@ class BancoUser{
 	}
 
 	function debug($param){
-	echo "<pre>";
-	print_r($param);
-	echo "</pre>";
+		echo "<pre>";
+		print_r($param);
+		echo "</pre>";
 	}
 	
 }

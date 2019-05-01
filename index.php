@@ -11,7 +11,14 @@ $funcionarios = $banco->getAllUsers();
 if(!isset($_SESSION["user"])){
 	header("location: ./login-page.php");
 }
-
+else{
+	if($_SESSION["user"]["permissao"] == "admin"){
+		$permissao = "Administrador";
+	}
+	else if($_SESSION["user"]["permissao"] == "usuario"){
+		$permissao = "Usuário";
+	}
+}
 ?>
 
 <!DOCTYPE html>
@@ -23,7 +30,7 @@ if(!isset($_SESSION["user"])){
 	<body>
 
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
-		  <a class="navbar-brand"><?php echo $_SESSION["user"]["nome"]; ?></a>
+		  <a class="navbar-brand"><?php echo $_SESSION["user"]["nome"].", ".$permissao; ?></a>
 		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 		    <span class="navbar-toggler-icon"></span>
 		  </button>
@@ -33,14 +40,18 @@ if(!isset($_SESSION["user"])){
 		      <li class="nav-item active">
 		        <a class="nav-link" href="index.php">Exibe funcionário<span class="sr-only">(current)</span></a>
 		      </li>
-		      <li class="nav-item">
-		        <a class="nav-link" href="cadastra-funcionario.php">Cadastra funcionário</a>
-		      </li>
-		      <li class="nav-item">
-		        <a class="nav-link" href="cadastra-departamento.php">
+		      <?php if($_SESSION['user']['permissao'] == 'admin'){
+						?>
+						<li class="nav-item">
+		        <a class="nav-link" href="cadastra-funcionario.php">Cadastra funcionário<span class="sr-only">(current)</span></a>
+						</li>
+						<li class="nav-item">
+						<a class="nav-link" href="cadastra-departamento.php">
 		          Cadastra departamento
 		        </a>
 		      </li>
+					<?php
+					}?>
 		      <li class="nav-item">
 		        <a class="nav-link" href="exibe-departamento.php">Exibe departamento</a>
 		      </li>
@@ -75,7 +86,6 @@ if(!isset($_SESSION["user"])){
 									echo "<td>Administrador</td>";
 								}
 				  		}
-
 				  	?>
 				  </tbody>
 				</table>
