@@ -5,5 +5,5 @@ function deleta_usuario(user) {
 }
 
 function edita_usuario(user) {
-    location.href = "/pw2/trabalho2/edita_usuario.php?user=" + user;
+    location.href = "./edita_usuario.php?user=" + user;
 }
