@@ -81,6 +81,17 @@ class BancoUser{
 		echo "</pre>";
 	}
 	
+	function deleteUser($user){
+		$con = $this->conexao();
+		$sql = "UPDATE usuario SET permissao='NULL' where login='{$user}'";
+		$this->debug($sql);
+		if($con->query($sql)){
+			return True;
+		}
+		else{
+			return False;
+		}
+	}
 }
 
 ?>

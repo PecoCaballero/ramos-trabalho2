@@ -64,18 +64,20 @@ else{
 
 		<div class="card text-center">
   			<div class="card-body" >
-    			<h5 class="card-title">Funcionário e seus salários</h5>
+    			<h5 class="card-title table-responsive-lg">Funcionário e seus salários</h5>
     			<table class="table">
 				  <thead>
 				    <tr>
 				      <th scope="col">Nome</th>
 				      <th scope="col">Salário</th>
 							<th scope="col">Permissão</th>
+							<th scope="col">Ação</th> 
 				    </tr>
 				  </thead>
-				  <tbody>
-				  	<?php 
+				  <tbody  style='height: 200px !important;'>
+				  	<?php
 				  		foreach ($funcionarios as $funcionario) {
+								if($funcionario['permissao'] != "NULL"){
 								echo "<tr>
 								<td>".$funcionario['nome']."</td>
 								<td>".$funcionario['salario']."</td>";
@@ -85,12 +87,18 @@ else{
 								else if($funcionario['permissao'] == 'admin'){
 									echo "<td>Administrador</td>";
 								}
+								$login = $funcionario['login'];
+								echo "<td height='70%'>
+										<button type='button' style='margin-right: 6px; width: 20%;' class='btn btn-primary'>Edit</button>
+										<button type='button' style='width: 20%;' onClick={deleta_usuario('".$funcionario['login']."');} class='btn btn-danger'>Delete</button>
+										</td>";
+							}
 				  		}
 				  	?>
 				  </tbody>
 				</table>
   			</div>
 		</div>
-
+	  <script src="./logica/functions.js"></script>
 	</body>
 </html>
