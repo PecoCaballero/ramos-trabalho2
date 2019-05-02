@@ -92,16 +92,16 @@ if (!isset($_SESSION["user"])) {
 								}
 								$login = $funcionario['login'];
 								echo "<td height='70%'>
-										<button type='button' style='margin-right: 6px; width: 20%;' class='btn btn-primary'>Edit</button>
-										<button type='button' style='width: 20%;' onClick={deleta_usuario('".$funcionario['login']."');} class='btn btn-danger'>Delete</button>
+										<button type='button' style='margin-right: 6px; width: 20%;' class='btn btn-primary' onClick={edita_usuario('".$funcionario['login']."');}>Editar</button>
+										<button type='button' style='width: 20%;' onClick={deleta_usuario('".$funcionario['login']."');} class='btn btn-danger'>Deletar</button>
 										</td>";
-							}
-				  		}
-				  	?>
-				  </tbody>
-				</table>
+									}
+				  			}
+				  		?>
+				  	</tbody>
+					</table>
   			</div>
-		</div>
+			</div>
 	  <script src="./logica/functions.js"></script>
 	</body>
 </html>
