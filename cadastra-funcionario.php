@@ -101,7 +101,7 @@ if (!isset($_SESSION["user"])) {
 						<select class="form-control" name="departamento">
 							<?php
 							foreach ($departamentos as $departamento) {
-								?><option value="<?php $departamento['nome'] ?>"><?php echo $departamento['nome'] ?></option><?php
+								?><option value="<?php $departamento['id'] ?>"><?php echo $departamento['nome'] . $departamento['id'] ?></option><?php
 																														}
 																														?>
 						</select>

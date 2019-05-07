@@ -7,6 +7,7 @@ include("logica/bancoUser.php");
 $banco = new bancoUser();
 
 $funcionarios = $banco->getAllUsers();
+$departamentos = $banco->getAllDepts();
 
 if (!isset($_SESSION["user"])) {
 	header("location: ./login-page.php");
@@ -62,46 +63,53 @@ if (!isset($_SESSION["user"])) {
 		</div>
 	</nav>
 
-		<div class="card text-center">
-  			<div class="card-body" >
-    			<h5 class="card-title table-responsive-lg">Funcionário e seus salários</h5>
-    			<table class="table">
-				  <thead>
-				    <tr>
-				      <th scope="col">Nome</th>
-				      <th scope="col">Salário</th>
-							<th scope="col">Permissão</th>
-							<th scope="col">Ação</th> 
-				    </tr>
-				  </thead>
-				  <tbody  style='height: 200px !important;'>
-				  	<?php
-				  		foreach ($funcionarios as $funcionario) {
-								if($funcionario['permissao'] != "NULL"){
-								echo "<tr>
-								<td>".$funcionario['nome']."</td>
-								<td>".$funcionario['salario']."</td>";
-								if($funcionario['permissao'] == 'usuario'){
-									echo "<td>Usuário</td>";
+	<div class="card text-center">
+		<div class="card-body">
+			<h5 class="card-title table-responsive-lg">Funcionário e seus salários</h5>
+			<table class="table">
+				<thead>
+					<tr>
+						<th scope="col">Nome</th>
+						<th scope="col">Salário</th>
+						<th scope="col">Permissão</th>
+						<th scope="col">Departamento</th>
+						<th scope="col">Ação</th>
+					</tr>
+				</thead>
+				<tbody style='height: 200px !important;'>
+					<?php
+					foreach ($funcionarios as $funcionario) {
+						
+						if ($funcionario['permissao'] != "NULL") {
+							echo "<tr>
+								<td>" . $funcionario['nome'] . "</td>
+								<td>" . $funcionario['salario'] . "</td>";
+							if ($funcionario['permissao'] == 'usuario') {
+								echo "<td>Usuário</td>";
+							} else if ($funcionario['permissao'] == 'admin') {
+								echo "<td>Administrador</td>";
+							} else {
+								echo "<td></td>";
+							}
+							$login = $funcionario['login'];
+							foreach($departamentos as $dept){
+								if($funcionario['departamento_fk'] == $dept['id']){
+									echo "<td>".$dept['nome']."</td>";
 								}
-								else if($funcionario['permissao'] == 'admin'){
-									echo "<td>Administrador</td>";
-								}
-								else{
-									echo "<td></td>";
-								}
-								$login = $funcionario['login'];
-								echo "<td height='70%'>
-										<button type='button' style='margin-right: 6px; width: 20%;' class='btn btn-primary' onClick={edita_usuario('".$funcionario['login']."');}>Editar</button>
-										<button type='button' style='width: 20%;' onClick={deleta_usuario('".$funcionario['login']."');} class='btn btn-danger'>Deletar</button>
+							}
+							
+							echo "<td height='70%'>
+										<button type='button' style='margin-right: 6px; width: 20%;' class='btn btn-primary' onClick={edita_usuario('" . $funcionario['login'] . "');}>Editar</button>
+										<button type='button' style='width: 20%;' onClick={deleta_usuario('" . $funcionario['login'] . "');} class='btn btn-danger'>Delete</button>
 										</td>";
-									}
-				  			}
-				  		?>
-				  	</tbody>
-					</table>
-  			</div>
-			</div>
-	  <script src="./logica/functions.js"></script>
-	</body>
+						}
+					}
+					?>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<script src="./logica/functions.js"></script>
+</body>
+
 </html>

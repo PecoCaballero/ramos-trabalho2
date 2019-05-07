@@ -5,13 +5,15 @@
 		private $salario;
 		private $senha;
 		private $permissao;
+		private $dept;
 
-		function constructorUser($login, $nome, $salario, $senha, $permissao){
+		function constructorUser($login, $nome, $salario, $senha, $permissao, $dept){
 			$this->setLogin($login);
 			$this->setNome($nome);
 			$this->setSalario($salario);
 			$this->setSenha($senha);
 			$this->setPermissao($permissao);
+			$this->setDept($dept);
 		}
 
 		public function getLogin(){
@@ -47,6 +49,13 @@
 		}
 		public function setPermissao($permissao){
 			$this->permissao = $permissao;
+			return $this;
+		}
+		public function getDept(){
+			return $this->dept;
+		}
+		public function setDept($dept){
+			$this->dept = $dept;
 			return $this;
 		}
 					

@@ -30,7 +30,7 @@ class BancoUser{
 
 	function getUser($login){
 		$con = $this->conexao();
-		$sql = "SELECT senha, nome, salario, permissao FROM Usuario WHERE login='".$login."'";
+		$sql = "SELECT id, senha, nome, salario, permissao FROM Usuario WHERE login='".$login."'";
 		$resultado = $con->query($sql);
 		$data = [];
 		while($row = $resultado->fetch_assoc()){
@@ -64,8 +64,8 @@ class BancoUser{
 
 	function cadastraUser($modelUser){
 		$con = $this->conexao();
-		$sql = "INSERT INTO usuario (login, nome, salario, senha, permissao) VALUES ('{$modelUser->getLogin()}', '{$modelUser->getNome()}', 
-		'{$modelUser->getSalario()}', '{$modelUser->getSenha()}', '{$modelUser->getPermissao()}')";
+		$sql = "INSERT INTO usuario (login, nome, salario, senha, permissao, departamento_fk) VALUES ('{$modelUser->getLogin()}', '{$modelUser->getNome()}', 
+		'{$modelUser->getSalario()}', '{$modelUser->getSenha()}', '{$modelUser->getPermissao()}', '{$modelUser->getDept()}')";
 		$this->debug($sql);
 		if($con->query($sql)){
 			echo "cadastrado";
