@@ -93,6 +93,29 @@ class BancoUser{
 			return False;
 		}
 	}
+
+	function getDeptFk($nome) {
+		$con = $this->conexao();
+		$sql = "SELECT id FROM departamento where nome='{$nome}'";
+		$resultado = $con->query($sql);
+		$data = [];
+		while($row = $resultado->fetch_assoc()){
+			array_push($data, $row);
+		}
+		return $data;
+	}
+
+	function editUser($id, $user, $nome, $permissao, $senha, $salario, $departamento){
+		$con = $this->conexao();
+		$sql = "UPDATE usuario SET login='{$user}', nome='{$nome}', senha='{$senha}', salario='{$salario}', departamento_fk='{$departamento}', permissao='{$permissao}' where login='{$id}'";
+		$this->debug($sql);
+		if($con->query($sql)){
+			return True;
+		}
+		else{
+			return False;
+		}
+	}
 }
 
 ?>
