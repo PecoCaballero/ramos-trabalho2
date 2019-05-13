@@ -6,9 +6,9 @@ $banco = new bancoUser();
 $departamentos = $banco->getAllDepts();
 
 if (!isset($_SESSION["user"])) {
-	header("location: ./login-page.php");
+	header("Location: ./login-page.php");
 } else if ($_SESSION["user"]["permissao"] != 'admin') {
-	header("location: ./index.php");
+	header("Location: ./index.php");
 } else {
 	if ($_SESSION["user"]["permissao"] == "admin") {
 		$permissao = "Administrador";
@@ -101,7 +101,7 @@ if (!isset($_SESSION["user"])) {
 						<select class="form-control" name="departamento">
 							<?php
 							foreach ($departamentos as $departamento){
-								echo "<option value='".$departamento['id']."'>".$departamento['nome'].$departamento['id']."</option>";
+								echo "<option value='".$departamento['id']."'>".$departamento['nome']."</option>";
 							}
 							?>
 						</select>

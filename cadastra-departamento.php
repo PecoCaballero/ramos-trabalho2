@@ -2,9 +2,9 @@
 session_start();
 
 if (!isset($_SESSION["user"])) {
-	header("location: ./login-page.php");
+	header("Location: ../login-page.php");
 } else if ($_SESSION["user"]["permissao"] != 'admin') {
-	header("location: ./index.php");
+	header("Location: ../index.php");
 } else {
 	if ($_SESSION["user"]["permissao"] == "admin") {
 		$permissao = "Administrador";
@@ -68,7 +68,7 @@ if (!isset($_SESSION["user"])) {
 				<div class="row">
 					<div class="col">
 						<label for="sigla">Sigla: </label>
-						<input type="text" class="form-control" id="sigla" name="sigla" placeholder="Sigla">
+						<input type="text" class="form-control" id="sigla" name="sigla" placeholder="AAAA">
 					</div>
 					<div class="col">
 						<label for="nome">Nome: </label>

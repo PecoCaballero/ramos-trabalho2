@@ -8,7 +8,7 @@ $banco = new bancoUser();
 $departamentos = $banco->getAllDepts();
 
 if (!isset($_SESSION["user"])) {
-	header("location: ./login-page.php");
+	header("Location: ./login-page.php");
 } else {
 	if ($_SESSION["user"]["permissao"] == "admin") {
 		$permissao = "Administrador";

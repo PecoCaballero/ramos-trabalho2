@@ -15,7 +15,6 @@ $banco = new bancoUser();
 $dept->constructorDept($_POST["sigla"], $_POST["nome"]);
 $banco->cadastraDept($dept);
 
-
-header("Location: ../exibe-departamento.php")
+header("Location: ../exibe-departamento.php");
 
 ?>
