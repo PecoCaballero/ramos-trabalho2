@@ -1,6 +1,6 @@
 <?php 
 	session_start();
 	$_SESSION["user"] = [];
-	header("location: ../login-page.php");
+	header("Location: ../login-page.php")
 
 ?>

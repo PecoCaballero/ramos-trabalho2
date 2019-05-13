@@ -2,6 +2,7 @@
 	
 
 class BancoUser{
+
 	function conexao(){
 		$servidor = "localhost";
 		$usuario = "root";

@@ -1,7 +1,10 @@
 <?php 
-    
-include("modelUser.php");
+
+
+echo('ansfioasnfinaf');
+
 include("bancoUser.php");
+include("modelUser.php");
 
 function debug($param){
 	echo "<pre>";
@@ -10,10 +13,11 @@ function debug($param){
 }
 
 
-$banco = new bancoUser();
+$banco = new BancoUser();
 
 $banco->deleteUser($_GET['user']);
 
-header("Location: ../index.php");
+
+//header("Location: ../index.php");
 
 ?>

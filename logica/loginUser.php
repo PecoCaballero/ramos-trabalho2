@@ -1,23 +1,26 @@
 <?php 
 
-include("bancoUser.php");
-
 session_start();
 $_SESSION = [];
+
+$_SESSION['root'] = "C:/xampp/htdocs/pw2/trabalho2/";
+
+include_once $_SESSION['root']."logica/bancoUser.php";
+
+
 $banco = new BancoUser();
 
 $user = $banco->getUser($_POST["login"], $_POST["senha"]);
 $senha = md5($_POST["senha"]);
 
-echo $senha;
-debug($user);
+//debug($user);
 
 if($user["senha"] == $senha){
 	$_SESSION['user'] = $user;
-	header("location: ../index.php");
+	header("Location: ../index.php");
 }
 else{
-	header("location: ../login-page.php?try=true");
+	header("Location: ../login-page.php?try=true");
 }
 
 function debug($param){
