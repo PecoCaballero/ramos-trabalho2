@@ -78,7 +78,7 @@ foreach ($funcionarios as $funcionario) {
 	<div class="card">
 		<div class="card-body">
 			<h5 class="card-title">Editar usuário</h5>
-			<form method="POST" action="logica/recebe_usuario.php">
+			<form method="POST" action=<?="logica/edita_usuario.php?user=".$_GET["user"] ?>>
 				<div class="row">
 					<div class="col">
 						<label for="login">Login: </label>
@@ -110,9 +110,9 @@ foreach ($funcionarios as $funcionario) {
 						<select class="form-control" name="departamento">
 							<?php
 							foreach ($departamentos as $departamento) {
-								?><option value="<?php $departamento['nome'] ?>"><?php echo $departamento['nome'] ?></option><?php
-																															}
-																															?>
+								echo "<option value='".$departamento['id']."'>".$departamento['nome']."</option>";
+							}
+								?>
 						</select>
 					</div>
 				</div>
