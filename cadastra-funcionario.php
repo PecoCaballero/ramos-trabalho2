@@ -12,7 +12,7 @@ if (!isset($_SESSION["user"])) {
 } else {
 	if ($_SESSION["user"]["permissao"] == "admin") {
 		$permissao = "Administrador";
-	} else if ($_SESSION["user"]["permissao"] == "usuario") {
+	} else {
 		$permissao = "Usuário";
 	}
 }

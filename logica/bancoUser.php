@@ -116,6 +116,17 @@ class BancoUser{
 			return False;
 		}
 	}
+	function editUserNoPassword($id, $user, $nome, $permissao, $salario, $departamento){
+		$con = $this->conexao();
+		$sql = "UPDATE usuario SET login='{$user}', nome='{$nome}', salario='{$salario}', departamento_fk='{$departamento}', permissao='{$permissao}' where login='{$id}'";
+		$this->debug($sql);
+		if($con->query($sql)){
+			return True;
+		}
+		else{
+			return False;
+		}
+	}
 }
 
 ?>

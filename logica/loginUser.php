@@ -3,7 +3,7 @@
 session_start();
 $_SESSION = [];
 
-$_SESSION['root'] = "C:/xampp/htdocs/pw2/trabalho2/";
+$_SESSION['root'] = "../";
 
 include_once $_SESSION['root']."logica/bancoUser.php";
 

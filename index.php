@@ -9,13 +9,16 @@ $banco = new bancoUser();
 $funcionarios = $banco->getAllUsers();
 $departamentos = $banco->getAllDepts();
 
-if (!isset($_SESSION["user"])) {
+if (!isset($_SESSION["user"]) || $_SESSION["user"]["permissao"] == "NULL") {
+	session_destroy();
 	header("Location: ./login-page.php");
 } else {
 	if ($_SESSION["user"]["permissao"] == "admin") {
 		$permissao = "Administrador";
-	} else if ($_SESSION["user"]["permissao"] == "usuario") {
-		$permissao = "Usuário";
+	} else {
+		if ($_SESSION["user"]["permissao"] == "usuario") {
+			$permissao = "Usuário";
+		}
 	}
 }
 ?>
@@ -73,8 +76,11 @@ if (!isset($_SESSION["user"])) {
 						<th scope="col">Salário</th>
 						<th scope="col">Permissão</th>
 						<th scope="col">Departamento</th>
-						<th scope="col">Ação</th>
-					</tr>
+						<?php if($permissao == "Administrador"){
+							?><th scope="col">Ação</th></tr><?php
+						} else {
+							?></tr>
+						<?php } ?>
 				</thead>
 				<tbody style='height: 200px !important;'>
 					<?php
@@ -97,11 +103,12 @@ if (!isset($_SESSION["user"])) {
 									echo "<td>".$dept['nome']."</td>";
 								}
 							}
-							
-							echo "<td height='70%'>
-										<button type='button' style='margin-right: 6px; width: 20%;' class='btn btn-primary' onClick={edita_usuario('" . $funcionario['login'] . "');}>Editar</button>
-										<button type='button' style='width: 20%;' onClick={deleta_usuario('" . $funcionario['login'] . "');} class='btn btn-danger'>Delete</button>
-										</td>";
+							if($permissao == 'Administrador'){
+								echo "<td height='70%'>
+											<button type='button' style='margin-right: 6px; width: 20%;' class='btn btn-primary' onClick={edita_usuario('" . $funcionario['login'] . "');}>Editar</button>
+											<button type='button' style='width: 20%;' onClick={deleta_usuario('" . $funcionario['login'] . "');} class='btn btn-danger'>Delete</button>
+											</td></tr>";
+							}
 						}
 					}
 					?>
